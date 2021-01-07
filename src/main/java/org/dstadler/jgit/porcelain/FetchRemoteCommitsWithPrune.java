@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import oracle.jgit.Utils;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ListBranchCommand.ListMode;
@@ -75,14 +76,16 @@ public class FetchRemoteCommitsWithPrune {
 
         // clean up here to not keep using more and more disk-space for these samples
         try {
-            FileUtils.deleteDirectory(localPath);
+            //FileUtils.deleteDirectory(localPath);
+            Utils.deleteRecursively(localPath.toPath());
         } catch (IOException e) {
             System.out.println("Retrying deleting path " + localPath + " once after catching exception");
             e.printStackTrace();
 
             Thread.sleep(1000);
 
-            FileUtils.deleteDirectory(localPath);
+            //FileUtils.deleteDirectory(localPath);
+            Utils.deleteRecursively(localPath.toPath());
         }
     }
 }

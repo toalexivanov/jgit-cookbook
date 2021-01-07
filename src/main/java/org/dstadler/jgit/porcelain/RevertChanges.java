@@ -1,5 +1,6 @@
 package org.dstadler.jgit.porcelain;
 
+import oracle.jgit.Utils;
 import org.apache.commons.io.FileUtils;
 import org.dstadler.jgit.helper.CookbookHelper;
 import org.eclipse.jgit.api.Git;
@@ -73,7 +74,8 @@ public class RevertChanges {
         }
 
         // clean up here to not keep using more and more disk-space for these samples
-        FileUtils.deleteDirectory(localPath);
+        //FileUtils.deleteDirectory(localPath);
+        Utils.deleteRecursively(localPath.toPath());
     }
 
     private static String getTextFromFilePath(Path file) throws IOException {

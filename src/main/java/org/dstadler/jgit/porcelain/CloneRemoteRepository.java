@@ -16,6 +16,7 @@ package org.dstadler.jgit.porcelain;
    limitations under the License.
  */
 
+import oracle.jgit.Utils;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -53,7 +54,8 @@ public class CloneRemoteRepository {
         }
 
         // clean up here to not keep using more and more disk-space for these samples
-        FileUtils.deleteDirectory(localPath);
+        //FileUtils.deleteDirectory(localPath);
+        Utils.deleteRecursively(localPath.toPath());
     }
 
     private static class SimpleProgressMonitor implements ProgressMonitor {
