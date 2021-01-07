@@ -32,6 +32,9 @@ public class BlameFile {
 				System.out.println("Blaming " + file);
 				final BlameResult result = new Git(repo).blame().setFilePath(file)
 						.setTextComparator(RawTextComparator.WS_IGNORE_ALL).call();
+				if (result == null) {
+					continue;
+				}
 				final RawText rawText = result.getResultContents();
 				for (int i = 0; i < rawText.size(); i++) {
 					final PersonIdent sourceAuthor = result.getSourceAuthor(i);
