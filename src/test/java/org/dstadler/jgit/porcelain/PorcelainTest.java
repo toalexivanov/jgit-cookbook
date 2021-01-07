@@ -1,11 +1,20 @@
 package org.dstadler.jgit.porcelain;
 
+import oracle.jgit.Utils;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class PorcelainTest {
+
     @Test
     public void runSamples() throws Exception {
+        Utils.setProxy();
+
         // simply call all the samples to see any severe problems with the samples
         AddAndListNoteOfCommit.main(null);
         AddFile.main(null);
